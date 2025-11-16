@@ -1,0 +1,75 @@
+.panel {
+  width: 340px;
+  height: 100%;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  background-color: var(--panel-bg);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.toolbarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.control {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--muted);
+  min-width: 56px;
+}
+
+.select {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--white-text-color);
+  font-size: 13px;
+}
+
+.colorInput {
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+}
+
+.rangeInput {
+  width: 140px;
+}
+
+.button {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--white-text-color);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.exportBtn {
+  background: rgb(62, 65, 251);
+  border: 1px solid rgb(62, 65, 251);
+  color: var(--white-text-color);
+}
+
+.clearBtn {
+  background: rgb(255, 112, 112);
+  border: 1px solid rgb(255, 112, 112);
+  color: var(--white-text-color);
+}
+
+.toolbarRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
