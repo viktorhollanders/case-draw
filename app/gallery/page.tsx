@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import styles from './gallery.module.css';
 import { listGalleryImages } from '../actions/listGallery';
 
