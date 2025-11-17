@@ -1,10 +1,11 @@
 :root {
-  --bg: #efefef;
+  --bg: #f9faf2;
   --panel-bg: #e6e6e6;
   --muted: #9aa6b2;
-  --accent: #04b751;
+  --primary-color: #716d54;
   --white-text-color: #ffffff;
   --dark-text-color: #171717;
+  --danger-btn-color: #f77257;
 }
 
 * {

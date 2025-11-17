@@ -82,13 +82,22 @@ const Canvas = forwardRef<CanvasHandle, CanvasProps>(function Canvas(
     ctxRef.current = ctx;
     previewCtxRef.current = pctx;
 
-    // Load background image
     const img = new Image();
     img.src = '/background.png';
+
     img.onload = () => {
       bgImage.current = img;
       ctx.drawImage(img, 0, 0, width, height);
     };
+
+    img.onerror = () => {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+      bgImage.current = null;
+    };
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, width, height);
   }, [width, height]);
 
   useEffect(() => {
@@ -248,6 +257,9 @@ const Canvas = forwardRef<CanvasHandle, CanvasProps>(function Canvas(
 
     if (bgImage.current) {
       ctx.drawImage(bgImage.current, 0, 0, width, height);
+    } else {
+      ctx.fillStyle = '#ffffff'; // fallback color
+      ctx.fillRect(0, 0, width, height);
     }
 
     for (const s of strokesRef.current) {
@@ -270,6 +282,13 @@ const Canvas = forwardRef<CanvasHandle, CanvasProps>(function Canvas(
       strokesRef.current = [];
       redoStack.current = [];
       snapshotsRef.current = [];
+
+      const ctx = ctxRef.current;
+      if (ctx) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+      }
+
       redraw();
     },
     exportImageBlob(): Promise<Blob | null> {
@@ -285,24 +304,17 @@ const Canvas = forwardRef<CanvasHandle, CanvasProps>(function Canvas(
   }));
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div className="canvasContainer">
       <canvas
         ref={canvasRef}
+        className="canvasElement"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseOut={handleMouseUp}
-        style={{ position: 'absolute', inset: 0, zIndex: 1 }}
       />
-      <canvas
-        ref={previewCanvasRef}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-          zIndex: 2,
-        }}
-      />
+
+      <canvas ref={previewCanvasRef} className="canvasElement previewCanvas" />
     </div>
   );
 });

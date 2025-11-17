@@ -8,6 +8,12 @@
   flex-direction: column;
 }
 
+.canvasWrap,
+.stage {
+  flex: 1;
+  overflow: hidden;
+}
+
 .topbar {
   display: flex;
   align-items: center;
@@ -25,13 +31,26 @@
   padding: 18px;
 }
 
-.canvasElement {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+.canvasContainer {
+  position: relative;
   width: 100%;
-  height: auto;
-  max-height: 100%;
+  height: 90vh;
+  border-radius: 12px;
+  overflow: hidden; /* <-- essential */
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+}
+
+.canvasElement {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+}
+
+.previewCanvas {
+  pointer-events: none;
+  z-index: 2;
 }
 
 .spacer {
